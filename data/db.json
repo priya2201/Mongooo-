@@ -1,0 +1,18 @@
+{
+    "blogs":[
+        {
+            "title":"My first blog",
+            "description":"first blog for node developers",
+            "author":"priya",
+            "id":1
+
+        },
+        {
+            "title":"My second blog",
+            "description":"second blog for angular raect developers",
+            "author":"vinit",
+            "id":1
+
+        }
+    ]
+}
