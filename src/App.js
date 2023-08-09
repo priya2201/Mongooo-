@@ -1,4 +1,5 @@
 import './App.css';
+import React,{lazy,Suspense} from 'react'
 import { BrowserRouter as Router,Switch, Route } from 'react-router-dom';
 import 'semantic-ui-react'
 import HomeComp from './components/HomeComp';
@@ -21,7 +22,13 @@ import ImageFile from './components/ImageFile';
 import Create from './components/create'
 import Update from './components/update';
 import Read from './components/read'
-
+import FragmentDemo from './components/FragmentDemo';
+import Table  from './components/Table';
+import ParentComp from './components/parentComp';
+import Pcomp from './components/Pcomp';
+import Albums from './practiceComponents/albums';
+// import MyComp from './components/MyComp'
+const MyComp=lazy(()=> import ('./components/MyComp'))
 
 function App() {
   return (
@@ -74,7 +81,15 @@ function App() {
         <Route path='/update' component={Update} />
         </div>
     </div>
-
+<FragmentDemo/>
+<Table/>
+{/* <PureComp/> */}
+<ParentComp/>
+<Pcomp/>
+<Albums/>
+<div>Another comp</div>
+<Suspense fallback={<div>Loading .....</div>}><MyComp/>
+</Suspense>
 </Router>
   // {/* <HomeComp/> */}
   // {/* <AboutComp/> */}

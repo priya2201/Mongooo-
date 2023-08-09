@@ -6,6 +6,18 @@ import {Link} from 'react-router-dom'
 
 function Read() {
     const [APIData,setAPIData]=useState([])
+    const getData=()=>{
+        axios.get(`https://6455de282e41ccf1690e967f.mockapi.io/fakeData`)
+        .then((getData)=>{
+            setAPIData(getData.data)
+        })
+    }
+    const onDelete=(id)=>{
+       axios.delete(`https://6455de282e41ccf1690e967f.mockapi.io/fakeData/${id}`) 
+       .then(()=>{
+getData();
+       })
+    }
 
     const setData = (data) => {
         let { id, firstName, lastName, checkbox } = data;
@@ -18,14 +30,17 @@ function Read() {
      }
      
 
+    // useEffect(() => {
+    //     axios.get(`https://6455de282e41ccf1690e967f.mockapi.io/fakeData`)
+    //         .then((response) => {
+    //             setAPIData(response.data);
+    //         })
+    // }, [])
+
     useEffect(() => {
-        axios.get(`https://6455de282e41ccf1690e967f.mockapi.io/fakeData`)
-            .then((response) => {
-                setAPIData(response.data);
-            })
-    }, [])
-
-
+        getData();
+      }, []);
+    
   return (
     <div>
                             <Table singleLine>
@@ -48,6 +63,9 @@ function Read() {
                             <Link to='/update'>
   <Table.Cell> 
      <Button onClick={()=>setData(data)}>Update</Button>
+   </Table.Cell>
+   <Table.Cell>
+    <Button onClick={()=>onDelete(data.id)}>Delete</Button>
    </Table.Cell>
 </Link>
                         </Table.Row>
